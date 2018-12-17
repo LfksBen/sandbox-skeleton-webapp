@@ -1,4 +1,4 @@
-package com.bbr.resources;
+package com.cbp.disponilite.gestionnaires.services.resources;
 
 
 import javax.ws.rs.GET;
@@ -6,7 +6,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 
 @Path("/home")
-public class HomeResource {
+public class GestionnairesResource {
 
     @GET
     public Response findAll() {
