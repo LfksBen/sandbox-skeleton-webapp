@@ -1,4 +1,4 @@
-package com.cbp.disponilite.gestionnaires.services.resources;
+package com.cbp.disponibilite.gestionnaires.services.resources;
 
 
 import javax.ws.rs.GET;

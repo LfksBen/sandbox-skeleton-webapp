@@ -1,2 +1,11 @@
-.idea
-target
+# compiled output
+**/target/
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+*.iml
+*.launch
+.settings/
+*.xml.versionsBackup
