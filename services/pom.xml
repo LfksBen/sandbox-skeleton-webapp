@@ -7,10 +7,16 @@
     <name>${project.artifactId}</name>
     <packaging>war</packaging>
     <parent>
-        <artifactId>disponibilite-gestionnaires</artifactId>
+        <artifactId>disponibilite-gestionnaires-parent</artifactId>
         <groupId>cbp.telephonie</groupId>
         <version>1.0.X</version>
     </parent>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.glassfish.jersey.containers</groupId>
+            <artifactId>jersey-container-servlet</artifactId>
+        </dependency>
+    </dependencies>
 
 </project>
