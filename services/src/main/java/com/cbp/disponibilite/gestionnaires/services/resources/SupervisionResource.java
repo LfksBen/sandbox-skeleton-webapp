@@ -11,7 +11,7 @@ public class SupervisionResource {
     @GET
     @Path("/dispo")
     public Response dispo() {
-        return Response.status(200).build();
+        return Response.ok().build();
     }
 
 }
