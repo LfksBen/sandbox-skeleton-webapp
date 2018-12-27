@@ -12,6 +12,12 @@
         <version>1.0.X</version>
     </parent>
 
+    <properties>
+
+        <maven.javadoc.skip>true</maven.javadoc.skip>
+        <war.name>${project.artifactId}</war.name>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -27,4 +33,7 @@
         </dependency>
     </dependencies>
 
+    <build>
+        <finalName>${war.name}</finalName>
+    </build>
 </project>
