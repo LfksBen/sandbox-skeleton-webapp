@@ -11,7 +11,7 @@ maven3Pipeline(
                 branchSonar : 'develop',
                 continuousAWS     : true,
                 gitCredential     : 'github',
-//                deployName        : 'disponibilite-gestionnaires', // pas besoin car même nom entre projets GitHub et GitLab AWS
+                deployName        : 'disponibilite-gestionnaires-services',
                 deployTarget        : 'cloudbycbp-v2-ec', // spécial pour ext conf
                 environmentsListSnapshot  : ['i1'],
                 environmentsListRelease  : ['r1', 'r2', 'r3'],
