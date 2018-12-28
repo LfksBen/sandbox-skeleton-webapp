@@ -17,5 +17,3 @@ maven3Pipeline(
                 environmentsListRelease  : ['r1', 'r2', 'r3'],
         ]
 )
-
-                

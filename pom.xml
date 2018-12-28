@@ -28,6 +28,9 @@
   <properties>
     <project.scm.id>github</project.scm.id>
 
+    <!-- conf utilisé par le build jenkins -->
+    <cdcg.config>cloud</cdcg.config>
+
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.build.javaVersion>1.8</project.build.javaVersion>
     <maven.compiler.source>1.8</maven.compiler.source>
@@ -49,7 +52,27 @@
     <commons.logging.version>1.2</commons.logging.version>
     <jackson.version>2.9.7</jackson.version>
     <commons.io.version>2.6</commons.io.version>
+    <liquibase.version>3.6.2</liquibase.version>
   </properties>
+
+  <profiles>
+    <!-- ce profil se déclenche lors que la variable d'environnement est détectée -->
+    <profile>
+      <id>poste-de-dev</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+        <property>
+          <name>env.DEV_CDCG</name>
+        </property>
+      </activation>
+      <properties>
+        <test.hibernate.show_sql>true</test.hibernate.show_sql>
+        <test.logger.DEFAULT>INFO</test.logger.DEFAULT>
+        <test.logger.DEBUG>DEBUG</test.logger.DEBUG>
+        <cdcg.config>${env.DEV_CDCG}</cdcg.config>
+      </properties>
+    </profile>
+  </profiles>
 
   <dependencyManagement>
     <dependencies>
@@ -109,34 +132,34 @@
         <version>${jersey.version}</version>
       </dependency>
 
+      <!-- Liquibase -->
+      <dependency>
+        <groupId>org.liquibase</groupId>
+        <artifactId>liquibase-core</artifactId>
+        <version>${liquibase.version}</version>
+      </dependency>
+
     </dependencies>
   </dependencyManagement>
 
-  <!--<build>-->
-    <!--<plugins>-->
-
-      <!--<plugin>-->
-        <!--<groupId>org.apache.maven.plugins</groupId>-->
-        <!--<artifactId>maven-release-plugin</artifactId>-->
-        <!--<version>2.5.3</version>-->
-      <!--</plugin>-->
-
-      <!--<plugin>-->
-        <!--<groupId>org.apache.maven.plugins</groupId>-->
-        <!--<artifactId>maven-deploy-plugin</artifactId>-->
-        <!--<version>2.7</version>-->
-      <!--</plugin>-->
-
-      <!--<plugin>-->
-        <!--<groupId>org.sonarsource.scanner.maven</groupId>-->
-        <!--<artifactId>sonar-maven-plugin</artifactId>-->
-        <!--<version>${maven-sonar-plugin.version}</version>-->
-      <!--</plugin>-->
-
-
-
-    <!--</plugins>-->
-
-  <!--</build>-->
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <configuration>
+          <webResources>
+            <resource>
+              <includes>
+                <include>**/*</include>
+              </includes>
+              <directory>${basedir}/../01-CONFIG/${cdcg.config}</directory>
+              <targetPath>WEB-INF/classes</targetPath>
+            </resource>
+          </webResources>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 
 </project>
