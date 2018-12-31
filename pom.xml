@@ -55,6 +55,8 @@
     <jackson.version>2.9.7</jackson.version>
     <commons.io.version>2.6</commons.io.version>
     <liquibase.version>3.6.2</liquibase.version>
+    <postgresql.version>42.2.5</postgresql.version>
+    <atomikos.version>4.0.6</atomikos.version>
   </properties>
 
   <profiles>
@@ -82,6 +84,11 @@
       <dependency>
         <groupId>cbp.telephonie</groupId>
         <artifactId>disponibilite-gestionnaires-business</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>cbp.telephonie</groupId>
+        <artifactId>disponibilite-gestionnaires-data</artifactId>
         <version>${project.version}</version>
       </dependency>
 
@@ -172,6 +179,19 @@
         <artifactId>spring-tx</artifactId>
         <version>${spring.version}</version>
       </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-jdbc</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+
+      <!-- postgresql -->
+      <dependency>
+        <groupId>org.postgresql</groupId>
+        <artifactId>postgresql</artifactId>
+        <version>${postgresql.version}</version>
+        <scope>compile</scope>
+      </dependency>
 
       <!-- aspectJ -->
       <dependency>
@@ -190,6 +210,28 @@
         <groupId>org.liquibase</groupId>
         <artifactId>liquibase-core</artifactId>
         <version>${liquibase.version}</version>
+      </dependency>
+
+      <!-- atomikos for JTA transaction management -->
+      <dependency>
+        <groupId>com.atomikos</groupId>
+        <artifactId>transactions-jta</artifactId>
+        <version>${atomikos.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.atomikos</groupId>
+        <artifactId>transactions-hibernate4</artifactId>
+        <version>${atomikos.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.atomikos</groupId>
+        <artifactId>transactions-jdbc</artifactId>
+        <version>${atomikos.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.atomikos</groupId>
+        <artifactId>transactions-jms</artifactId>
+        <version>${atomikos.version}</version>
       </dependency>
 
     </dependencies>

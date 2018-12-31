@@ -1,4 +1,4 @@
-package com.cbp.disponibilite.gestionnaires.services.manager;
+package com.cbp.disponibilite.gestionnaires.manager;
 
 import org.springframework.stereotype.Component;
 

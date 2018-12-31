@@ -12,6 +12,12 @@
     <artifactId>disponibilite-gestionnaires-business</artifactId>
 
     <dependencies>
+        <!-- projet -->
+        <dependency>
+            <groupId>cbp.telephonie</groupId>
+            <artifactId>disponibilite-gestionnaires-data</artifactId>
+        </dependency>
+
         <!-- Spring 5 dependencies -->
         <dependency>
             <groupId>org.springframework</groupId>

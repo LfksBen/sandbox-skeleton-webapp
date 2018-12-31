@@ -1,7 +1,7 @@
 package com.cbp.disponibilite.gestionnaires.services.resources;
 
 
-import com.cbp.disponibilite.gestionnaires.services.manager.GestionnairesService;
+import com.cbp.disponibilite.gestionnaires.manager.GestionnairesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
