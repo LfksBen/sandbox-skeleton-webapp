@@ -17,7 +17,10 @@ public class JerseyApplication extends ResourceConfig {
 
 	public JerseyApplication(@Context ServletContext servletContext) {
 		// Spring
-		packages("com.cbp.disponibilite.gestionnaires.services.resources");
+//		register(JacksonFeature.class);
+
+
+//		packages("com.cbp.disponibilite.gestionnaires.services.resources");
 	}
 
 }

@@ -1,43 +1,34 @@
 package com.cbp.disponibilite.gestionnaires.services.resources;
 
 
+import com.cbp.disponibilite.gestionnaires.services.manager.GestionnairesService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
 
+@Component
 @Path("/")
 public class GestionnairesResource {
 
+    @Autowired
+    GestionnairesService service;
+
+    @Value("${JDBC_CONNECTION_STRING}")
+    private String conn;
+
+    @Value("${JDBC_USER}")
+    private String user;
+
+    @Value("${JDBC_PASSWORD}")
+    private String pass;
+
     @GET
     public Response findAll() {
-
-        Properties prop = new Properties();
-        InputStream input = null;
-
-        try {
-
-            ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-            input = classLoader.getResourceAsStream("custom.properties");
-
-            // load a properties file
-            prop.load(input);
-
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        } finally {
-            if (input != null) {
-                try {
-                    input.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
-        return Response.status(200).entity("hellooo " + prop.getProperty("JDBC_CONNDDECTION_STRING") + " " + prop.getProperty("JDBC_USER") + " " + prop.getProperty("JDBC_PASSWORD")).build();
+        return Response.status(200).entity(service.getHello() + conn + " " + user + " " + pass).build();
     }
 
 }
