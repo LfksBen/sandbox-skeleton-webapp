@@ -6,9 +6,10 @@ Backend de disponibilite-gestionnaires-web
 
 ## Variable d'environnement
 
-* Vous devez déclarer la variable d'environnement "DEV_CDCG".  
-* Sa valeur correspond à vos fichiers de configuration sous 01-CONFIG/{env.DEV_CDCG}.  
-* Pensez à activer le profil poste-de-dev dans IntelliJ (Menu "Maven Projects" puis "Profiles") si ce n'est pas déjà fait..
+* Vous devez ajouter dans votre settings.xml de maven la propriété "dev.cdcg"
+  * Personnellement je l'ai ajouté au profil activté par défaut "cbp".  
+* Sa valeur correspond à vos fichiers de configuration sous 01-CONFIG/{dev.cdcg}.
+* Vous pouvez vous connecter à la base de données i1 r1 etc en changeant cette valeur, update de votre projet puis en le redémarrant.
 
 ## PostGreSQL 
 

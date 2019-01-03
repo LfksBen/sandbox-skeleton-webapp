@@ -29,7 +29,7 @@
     <project.scm.id>github</project.scm.id>
 
     <!-- conf utilisé par le build jenkins -->
-    <cdcg.config>cloud</cdcg.config>
+    <dev.cdcg>jenkins</dev.cdcg>
 
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.build.javaVersion>1.8</project.build.javaVersion>
@@ -58,25 +58,6 @@
     <postgresql.version>42.2.5</postgresql.version>
     <atomikos.version>4.0.6</atomikos.version>
   </properties>
-
-  <profiles>
-    <!-- ce profil se déclenche lors que la variable d'environnement est détectée -->
-    <profile>
-      <id>poste-de-dev</id>
-      <activation>
-        <activeByDefault>false</activeByDefault>
-        <property>
-          <name>env.DEV_CDCG</name>
-        </property>
-      </activation>
-      <properties>
-        <test.hibernate.show_sql>true</test.hibernate.show_sql>
-        <test.logger.DEFAULT>INFO</test.logger.DEFAULT>
-        <test.logger.DEBUG>DEBUG</test.logger.DEBUG>
-        <cdcg.config>${env.DEV_CDCG}</cdcg.config>
-      </properties>
-    </profile>
-  </profiles>
 
   <dependencyManagement>
     <dependencies>
@@ -248,7 +229,7 @@
               <includes>
                 <include>**/*</include>
               </includes>
-              <directory>${basedir}/../01-CONFIG/${cdcg.config}</directory>
+              <directory>${basedir}/../01-CONFIG/${dev.cdcg}</directory>
               <targetPath>WEB-INF/classes</targetPath>
             </resource>
           </webResources>
