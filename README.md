@@ -4,12 +4,15 @@ Backend de disponibilite-gestionnaires-web
 
 # Pré-requis
 
-## Variable d'environnement
+## Configuration du profil dans le fichier de "settings.xml" Maven
 
-* Vous devez ajouter dans votre settings.xml de maven la propriété "dev.cdcg"
-  * Personnellement je l'ai ajouté au profil activté par défaut "cbp".  
+(Ceci est en complément de la conf de base pour tout projet: nexus, github etc...)
+* Vous devez ajouter dans votre settings.xml la propriété "dev.cdcg"
+  * Personnellement je l'ai ajouté au profil activé par défaut: "cbp".  
 * Sa valeur correspond à vos fichiers de configuration sous 01-CONFIG/{dev.cdcg}.
-* Vous pouvez vous connecter à la base de données i1 r1 etc en changeant cette valeur, update de votre projet puis en le redémarrant.
+* Vous pouvez vous connecter aux environnements i1 r1 etc en changeant cette valeur, update de votre projet puis en le redémarrant.
+
+Attention il faut penser à tenir à jour les fichiers de propriétés des environnements i1 r1 etc vis-à-vis de ceux déposés sur le gitlab-aws qui sont réellement utilisés au déploiement de l'application.
 
 ## PostGreSQL 
 
