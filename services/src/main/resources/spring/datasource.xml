@@ -7,34 +7,16 @@
     
 
    <bean id="datasourceInit" class="com.cbp.disponibilite.gestionnaires.database.LiquibaseUpdater" depends-on="dataSource">
-    <constructor-arg ref="dataSource"></constructor-arg>
-    <constructor-arg value="${updateDatabase:false}"></constructor-arg>
+    <constructor-arg ref="dataSource"/>
+    <constructor-arg value="${updateDatabase:false}"/>
    </bean>
 
     <!-- Configures the database connection. -->
-    <bean id="dataSource" class="com.atomikos.jdbc.AtomikosDataSourceBean">
-
-        <property name="uniqueResourceName" value="DisponibiliteGestionnairesDataSource"/>
-        <property name="xaDataSourceClassName" value="org.postgresql.xa.PGXADataSource" />
-        <property name="xaProperties">
-            <props>
-                <!-- Propriétés pour la connection BDD -->
-                <prop key="url">${JDBC_CONNECTION_STRING}</prop>
-                <prop key="user">${JDBC_USER}</prop>
-                <prop key="password">${JDBC_PASSWORD}</prop>
-                <prop key="logUnclosedConnections">true</prop>
-                <prop key="assumeMinServerVersion">10.4</prop>
-                <prop key="tcpKeepAlive">true</prop>
-            </props>
-        </property>
-        <property name="minPoolSize" value="${db.transaction.minPoolSize}" />
-        <property name="maxPoolSize" value="${db.transaction.maxPoolSize}" />
-        <property name="borrowConnectionTimeout" value="15" /><!--  Sets the maximum amount of time in seconds the pool will block waiting for a connection to become available in the pool when it is empty. -->
-        <property name="reapTimeout" value="0" /><!-- Get the amount of time in seconds the connection pool will allow a connection to be borrowed before claiming it back.-->
-        <property name="maxIdleTime" value="600" /><!--Sets the maximum amount of seconds that unused excess connections should stay in the pool.-->
-        <property name="testQuery" value="SELECT 1" />
-        <property name="maintenanceInterval" value="600" /><!-- Sets the maintenance interval for the pool maintenance thread. -->
-        <property name="loginTimeout" value="15" />
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="org.postgresql.Driver" />
+        <property name="url" value="${JDBC_CONNECTION_STRING}" />
+        <property name="username" value="${JDBC_USER}" />
+        <property name="password" value="${JDBC_PASSWORD}" />
     </bean>
 </beans>
 

@@ -3,13 +3,13 @@
     <property name="now" value="now()" dbms="postgresql"/>
     <changeSet author="BRAUD" id="0001">
         <createTable tableName="gestionnaire">
-            <column name="p_idgestionnaire" type="decimal(11,0)">
+            <column autoIncrement="true" name="p_idgestionnaire" type="BIGINT">
                 <constraints primaryKey="true"/>
             </column>
             <column defaultValueDate="${now}" name="c_datemodification" type="datetime">
                 <constraints nullable="false"/>
             </column>
-            <column name="c_matricule" type="decimal(4,0)">
+            <column name="c_matricule" type="BIGINT">
                 <constraints nullable="false"/>
             </column>
             <column name="c_nom" type="VARCHAR(60)">
@@ -18,9 +18,9 @@
             <column name="c_prenom" type="VARCHAR(60)">
                 <constraints nullable="false"/>
             </column>
-            <column name="f_iddomaine" type="decimal(3,0)"/>
-            <column name="f_idgroupe" type="decimal(3,0)"/>
-            <column name="c_telephone" type="decimal(4,0)">
+            <column name="f_iddomaine" type="BIGINT"/>
+            <column name="f_idgroupe" type="BIGINT"/>
+            <column name="c_telephone" type="BIGINT">
                 <constraints nullable="false"/>
             </column>
             <column defaultValueBoolean="false" name="c_dispo" type="BOOLEAN">

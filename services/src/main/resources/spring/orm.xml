@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+      http://www.springframework.org/schema/beans
+      http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+    <!-- EntityManager -->
+    <bean id="entityManagerFactory"
+          class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="packagesToScan" value="com.cbp.disponibilite.gestionnaires.model.entities" />
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
+        </property>
+        <property name="jpaProperties">
+            <props>
+                <!-- mode de cache -->
+                <prop key="javax.persistence.sharedCache.mode">ALL</prop>
+                <!-- Dialect hibernate (MySQL) -->
+                <prop key="hibernate.dialect">${hibernate.dialect}</prop>
+                <!-- paramétrage pour valider la base de données par rapports aux BO -->
+                <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+                <!-- stratégie de nommage -->
+                <prop key="hibernate.ejb.naming_strategy">${hibernate.ejb.naming_strategy}</prop>
+                <!-- <prop key="hibernate.transaction.coordinator_class">jta</prop> -->
+                <prop key="hibernate.transaction.jta.platform">${hibernate.transaction.jta.platform}</prop>
+                <prop key="com.atomikos.icatch.serial_jta_transactions">false</prop>
+                <prop key="hibernate.connection.release_mode">AFTER_TRANSACTION</prop>
+                <!-- SQL dans la console -->
+                <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+                <!-- prettyprint du SQL -->
+                <prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+                <!-- gestion d'objets spéciaux JodaTime/Java8.dateTime -->
+                <prop key="jadira.usertype.autoRegisterUserTypes">true</prop>
+                <prop key="hibernate.connection.autocommit">false</prop>
+                <prop key="hibernate.connection.provider_disables_autocommit">false</prop>
+                <prop key="hibernate.jdbc.use_streams_for_binary">true</prop>
+                <prop key="hibernate.jdbc.lob.non_contextual_creation">true</prop>
+                <!-- http://in.relation.to/2017/02/01/non-temporary-table-bulk-id-strategies as postgresql don't support temporary table in prepare statement -->
+                <prop key="hibernate.hql.bulk_id_strategy">org.hibernate.hql.spi.id.inline.InlineIdsInClauseBulkIdStrategy</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="persistenceExceptionTranslationPostProcessor" class= "org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+</beans>

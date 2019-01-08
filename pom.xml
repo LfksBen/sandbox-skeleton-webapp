@@ -9,6 +9,7 @@
     <module>services</module>
     <module>data</module>
     <module>business</module>
+    <module>model</module>
   </modules>
   <name>Backend de disponibilite-gestionnaires-web déployé sur AWS.</name>
 
@@ -57,6 +58,9 @@
     <liquibase.version>3.6.2</liquibase.version>
     <postgresql.version>42.2.5</postgresql.version>
     <atomikos.version>4.0.6</atomikos.version>
+    <hibernate.version>5.4.0.Final</hibernate.version>
+    <apache.commons.collections.version>4.2</apache.commons.collections.version>
+    <apache.commons.lang.version>3.8.1</apache.commons.lang.version>
   </properties>
 
   <dependencyManagement>
@@ -70,6 +74,11 @@
       <dependency>
         <groupId>cbp.telephonie</groupId>
         <artifactId>disponibilite-gestionnaires-data</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>cbp.telephonie</groupId>
+        <artifactId>disponibilite-gestionnaires-model</artifactId>
         <version>${project.version}</version>
       </dependency>
 
@@ -165,6 +174,11 @@
         <artifactId>spring-jdbc</artifactId>
         <version>${spring.version}</version>
       </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-orm</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
 
       <!-- postgresql -->
       <dependency>
@@ -213,6 +227,30 @@
         <groupId>com.atomikos</groupId>
         <artifactId>transactions-jms</artifactId>
         <version>${atomikos.version}</version>
+      </dependency>
+
+      <!-- HIBERNATE -->
+      <dependency>
+        <groupId>org.hibernate</groupId>
+        <artifactId>hibernate-core</artifactId>
+        <version>${hibernate.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.hibernate</groupId>
+        <artifactId>hibernate-validator</artifactId>
+        <version>${hibernate.version}</version>
+      </dependency>
+
+      <!-- apache commons -->
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-collections4</artifactId>
+        <version>${apache.commons.collections.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-lang3</artifactId>
+        <version>${apache.commons.lang.version}</version>
       </dependency>
 
     </dependencies>
