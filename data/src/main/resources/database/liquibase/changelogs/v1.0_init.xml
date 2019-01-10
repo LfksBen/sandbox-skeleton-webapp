@@ -28,4 +28,7 @@
             </column>
         </createTable>
     </changeSet>
+    <!--<changeSet author="BRAUD" id="0002">-->
+        <!--<sqlFile path="database/sql/migration-data.sql" stripComments="true"/>-->
+    <!--</changeSet>-->
 </databaseChangeLog>

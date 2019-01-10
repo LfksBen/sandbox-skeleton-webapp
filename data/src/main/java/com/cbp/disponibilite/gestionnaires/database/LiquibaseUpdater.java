@@ -43,6 +43,7 @@ public class LiquibaseUpdater {
      */
     protected <O> O liquibaseResult(final LiquibaseAction<O> action) {
         try (final Connection c = this.dataSource.getConnection()) {
+//            c.setSchema("test");
             final Liquibase liquibase = new Liquibase(DB_CHANGELOG, new ClassLoaderResourceAccessor(), new JdbcConnection(c));
             return action.execute(liquibase);
         } catch (SQLException | LiquibaseException e) {

@@ -17,6 +17,7 @@
             <props>
                 <!-- mode de cache -->
                 <prop key="javax.persistence.sharedCache.mode">ALL</prop>
+                <prop key="hibernate.default_schema">public</prop>
                 <!-- Dialect hibernate (MySQL) -->
                 <prop key="hibernate.dialect">${hibernate.dialect}</prop>
                 <!-- paramétrage pour valider la base de données par rapports aux BO -->

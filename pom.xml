@@ -60,7 +60,6 @@
     <atomikos.version>4.0.6</atomikos.version>
     <hibernate.version>5.4.0.Final</hibernate.version>
     <apache.commons.collections.version>4.2</apache.commons.collections.version>
-    <apache.commons.lang.version>3.8.1</apache.commons.lang.version>
   </properties>
 
   <dependencyManagement>
@@ -246,11 +245,6 @@
         <groupId>org.apache.commons</groupId>
         <artifactId>commons-collections4</artifactId>
         <version>${apache.commons.collections.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.commons</groupId>
-        <artifactId>commons-lang3</artifactId>
-        <version>${apache.commons.lang.version}</version>
       </dependency>
 
     </dependencies>

@@ -1,6 +1,7 @@
 package com.cbp.disponibilite.gestionnaires.dao;
 
-import org.apache.commons.lang3.tuple.Pair;
+
+import javafx.util.Pair;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;

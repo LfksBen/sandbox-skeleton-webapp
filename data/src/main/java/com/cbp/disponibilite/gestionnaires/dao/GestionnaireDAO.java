@@ -1,7 +1,7 @@
 package com.cbp.disponibilite.gestionnaires.dao;
 
 import com.cbp.disponibilite.gestionnaires.model.entities.Gestionnaire;
-import org.apache.commons.lang3.tuple.Pair;
+import javafx.util.Pair;
 import org.springframework.stereotype.Repository;
 
 import java.util.Date;
@@ -31,7 +31,7 @@ public class GestionnaireDAO extends AbstractDAO<Long, Gestionnaire> {
                 "FROM " + Gestionnaire.class.getSimpleName()
                         + " WHERE matricule = :matricule"
                         + " ORDER BY nom, prenom DESC",
-                Pair.of("matricule", matricule)
+                new Pair<>("matricule", matricule)
         );
     }
 }
