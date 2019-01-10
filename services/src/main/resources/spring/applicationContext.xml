@@ -2,12 +2,16 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="
         http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
 
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd
+
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
     ">
 
     <context:annotation-config/>
@@ -15,6 +19,11 @@
 
     <!-- chargement des fichiers de properties -->
     <context:property-placeholder  location="classpath*:application.properties,classpath*:custom.properties" ignore-resource-not-found="true" system-properties-mode="OVERRIDE"/>
+
+    <!-- exposition du proxy  -->
+    <!-- ___________________  -->
+
+    <aop:aspectj-autoproxy expose-proxy="true" />
 
     <import resource="./datasource.xml"/>
     <import resource="./orm.xml"/>
