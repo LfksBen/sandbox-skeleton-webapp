@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
+import java.lang.management.ManagementFactory;
 
 @Component
 @Path("/")
@@ -28,7 +29,7 @@ public class GestionnairesResource {
 
     @GET
     public Response findAll() {
-        return Response.status(200).entity(service.getHello() + conn + " " + user + " " + pass).build();
+        return Response.status(200).entity(service.getHello() + conn + " " + user + " " + pass + " " + ManagementFactory.getRuntimeMXBean().getInputArguments()).build();
     }
 
 }
