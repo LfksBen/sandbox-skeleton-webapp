@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<appender name="BACK" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	    <file>/var/log/tomcat8/disponibilite-gestionnaires-services.log.json</file>
+	    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">        
+	        <!-- daily rollover -->
+	        <fileNamePattern>/var/log/tomcat8/disponibilite-gestionnaires-services-%d{yyyy-MM-dd}.log.json</fileNamePattern>
+	        <maxHistory>60</maxHistory>
+	    </rollingPolicy>
+	    <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+	          <includeContext>false</includeContext>
+	      </encoder>
+	</appender>
+	
+    <root level="INFO">
+        <appender-ref ref="BACK" />
+    </root>
+</configuration>

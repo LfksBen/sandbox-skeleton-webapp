@@ -18,6 +18,20 @@
             <artifactId>disponibilite-gestionnaires-data</artifactId>
         </dependency>
 
+        <!-- Logger -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>net.logstash.logback</groupId>
+            <artifactId>logstash-logback-encoder</artifactId>
+        </dependency>
+
         <!-- Spring 5 dependencies -->
         <dependency>
             <groupId>org.springframework</groupId>

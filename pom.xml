@@ -61,6 +61,8 @@
     <hibernate.version>5.4.0.Final</hibernate.version>
     <apache.commons.collections.version>4.2</apache.commons.collections.version>
     <apache.commons.lang.version>3.8.1</apache.commons.lang.version>
+    <logback.version>1.2.3</logback.version>
+    <logstash.logback.version>5.2</logstash.logback.version>
   </properties>
 
   <dependencyManagement>
@@ -85,19 +87,19 @@
       <!-- Logger -->
       <dependency>
         <groupId>org.slf4j</groupId>
-        <artifactId>slf4j-log4j12</artifactId>
-        <version>${slf4j.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.slf4j</groupId>
         <artifactId>slf4j-api</artifactId>
         <version>${slf4j.version}</version>
       </dependency>
-      <!--<dependency>-->
-        <!--<groupId>commons-logging</groupId>-->
-        <!--<artifactId>commons-logging</artifactId>-->
-        <!--<version>${commons.logging.version}</version>-->
-      <!--</dependency>-->
+      <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-classic</artifactId>
+        <version>${logback.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>net.logstash.logback</groupId>
+        <artifactId>logstash-logback-encoder</artifactId>
+        <version>${logstash.logback.version}</version>
+      </dependency>
 
       <!-- jackson -->
       <dependency>
