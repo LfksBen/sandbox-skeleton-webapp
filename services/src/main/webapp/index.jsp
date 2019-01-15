@@ -8,25 +8,7 @@
   <link rel="stylesheet" type="text/css" href="./static/docs/swagger-ui.css" >
   <link rel="icon" type="image/png" href="./static/docs/favicon-32x32.png" sizes="32x32" />
   <link rel="icon" type="image/png" href="./static/docs/favicon-16x16.png" sizes="16x16" />
-  <style>
-    html
-    {
-      box-sizing: border-box;
-      overflow: -moz-scrollbars-vertical;
-      overflow-y: scroll;
-    }
-    *,
-    *:before,
-    *:after
-    {
-      box-sizing: inherit;
-    }
-
-    body {
-      margin:0;
-      background: #fafafa;
-    }
-  </style>
+  <link rel="stylesheet" type="text/css" href="./static/docs/init-style.css" />
 </head>
 
 <body>
@@ -69,28 +51,7 @@
 
 <script src="./static/docs/swagger-ui-bundle.js"> </script>
 <script src="./static/docs/swagger-ui-standalone-preset.js"> </script>
-<script>
-window.onload = function() {
-  
-  // Build a system
-  const ui = SwaggerUIBundle({
-    // url vers le JSON pour charger l'IHM
-    url: "/services/swagger.json",
-    dom_id: '#swagger-ui',
-    deepLinking: true,
-    presets: [
-      SwaggerUIBundle.presets.apis,
-      SwaggerUIStandalonePreset
-    ],
-    plugins: [
-      SwaggerUIBundle.plugins.DownloadUrl
-    ],
-    layout: "StandaloneLayout"
-  })
-
-  window.ui = ui
-}
-</script>
+<script src="./static/docs/init-script.js"> </script>
 </body>
 
 </html>
