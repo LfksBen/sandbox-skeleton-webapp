@@ -5,11 +5,11 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 
-@Path("/private/open")
+@Path("/services/healthcheck")
 public class SupervisionResource {
 
     @GET
-    @Path("/dispo")
+    @Path("/ping")
     public Response dispo() {
         return Response.ok().build();
     }
