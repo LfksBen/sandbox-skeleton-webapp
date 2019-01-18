@@ -9,6 +9,7 @@
     <module>services</module>
     <module>data</module>
     <module>business</module>
+    <module>model</module>
   </modules>
   <name>Backend de disponibilite-gestionnaires-web déployé sur AWS.</name>
 
@@ -27,8 +28,17 @@
 
   <properties>
     <project.scm.id>github</project.scm.id>
+
+    <!-- conf utilisé par le build jenkins -->
+    <dev.cdcg>jenkins</dev.cdcg>
+
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.build.javaVersion>1.8</project.build.javaVersion>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
+
+    <maven-sonar-plugin.version>3.4.0.905</maven-sonar-plugin.version>
+    <maven.javadoc.skip>true</maven.javadoc.skip>
 
     <!--Exclusion Sonar-->
     <sonar.coverage.exclusions>
@@ -36,34 +46,61 @@
       **/*.js,
     </sonar.coverage.exclusions>
 
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
     <jersey.version>2.27</jersey.version>
+    <spring.version>4.3.21.RELEASE</spring.version>
+    <aspectj.version>1.8.8</aspectj.version>
+    <servlet.version>3.0.1</servlet.version>
     <slf4j.version>1.7.25</slf4j.version>
     <commons.logging.version>1.2</commons.logging.version>
     <jackson.version>2.9.7</jackson.version>
     <commons.io.version>2.6</commons.io.version>
-
+    <liquibase.version>3.6.2</liquibase.version>
+    <postgresql.version>42.2.5</postgresql.version>
+    <atomikos.version>4.0.6</atomikos.version>
+    <hibernate.version>5.4.0.Final</hibernate.version>
+    <apache.commons.collections.version>4.2</apache.commons.collections.version>
+    <apache.commons.lang.version>3.8.1</apache.commons.lang.version>
+    <logback.version>1.2.3</logback.version>
+    <logstash.logback.version>5.2</logstash.logback.version>
+    <swagger-ui.version>1.5.17</swagger-ui.version>
   </properties>
 
   <dependencyManagement>
     <dependencies>
-      <!-- Logger -->
+      <!-- projet -->
       <dependency>
-        <groupId>org.slf4j</groupId>
-        <artifactId>slf4j-log4j12</artifactId>
-        <version>${slf4j.version}</version>
+        <groupId>cbp.telephonie</groupId>
+        <artifactId>disponibilite-gestionnaires-business</artifactId>
+        <version>${project.version}</version>
       </dependency>
+      <dependency>
+        <groupId>cbp.telephonie</groupId>
+        <artifactId>disponibilite-gestionnaires-data</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>cbp.telephonie</groupId>
+        <artifactId>disponibilite-gestionnaires-model</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+
+      <!-- Logger -->
       <dependency>
         <groupId>org.slf4j</groupId>
         <artifactId>slf4j-api</artifactId>
         <version>${slf4j.version}</version>
       </dependency>
-      <!--<dependency>-->
-        <!--<groupId>commons-logging</groupId>-->
-        <!--<artifactId>commons-logging</artifactId>-->
-        <!--<version>${commons.logging.version}</version>-->
-      <!--</dependency>-->
+      <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-classic</artifactId>
+        <version>${logback.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>net.logstash.logback</groupId>
+        <artifactId>logstash-logback-encoder</artifactId>
+        <version>${logstash.logback.version}</version>
+      </dependency>
 
       <!-- jackson -->
       <dependency>
@@ -87,18 +124,178 @@
         <scope>test</scope>
       </dependency>
 
+      <!-- jersey -->
       <dependency>
-        <groupId>org.glassfish.jersey.containers</groupId>
-        <artifactId>jersey-container-servlet</artifactId>
-        <version>${jersey.version}</version>
+        <groupId>javax.servlet</groupId>
+        <artifactId>javax.servlet-api</artifactId>
+        <version>${servlet.version}</version>
       </dependency>
-
       <dependency>
         <groupId>org.glassfish.jersey.inject</groupId>
         <artifactId>jersey-hk2</artifactId>
         <version>${jersey.version}</version>
       </dependency>
+      <dependency>
+        <groupId>org.glassfish.jersey.containers</groupId>
+        <artifactId>jersey-container-servlet</artifactId>
+        <version>${jersey.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.glassfish.jersey.media</groupId>
+        <artifactId>jersey-media-json-jackson</artifactId>
+        <version>${jersey.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.glassfish.jersey.ext</groupId>
+        <artifactId>jersey-spring4</artifactId>
+        <version>${jersey.version}</version>
+      </dependency>
+
+      <!-- Spring 5 dependencies -->
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-core</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-context</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-web</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-tx</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-jdbc</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-orm</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+
+      <!-- postgresql -->
+      <dependency>
+        <groupId>org.postgresql</groupId>
+        <artifactId>postgresql</artifactId>
+        <version>${postgresql.version}</version>
+        <scope>compile</scope>
+      </dependency>
+
+      <!-- aspectJ -->
+      <dependency>
+        <groupId>org.aspectj</groupId>
+        <artifactId>aspectjrt</artifactId>
+        <version>${aspectj.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.aspectj</groupId>
+        <artifactId>aspectjweaver</artifactId>
+        <version>${aspectj.version}</version>
+      </dependency>
+
+      <!-- Liquibase -->
+      <dependency>
+        <groupId>org.liquibase</groupId>
+        <artifactId>liquibase-core</artifactId>
+        <version>${liquibase.version}</version>
+      </dependency>
+
+      <!-- atomikos for JTA transaction management -->
+      <dependency>
+        <groupId>com.atomikos</groupId>
+        <artifactId>transactions-jta</artifactId>
+        <version>${atomikos.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.atomikos</groupId>
+        <artifactId>transactions-hibernate4</artifactId>
+        <version>${atomikos.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.atomikos</groupId>
+        <artifactId>transactions-jdbc</artifactId>
+        <version>${atomikos.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.atomikos</groupId>
+        <artifactId>transactions-jms</artifactId>
+        <version>${atomikos.version}</version>
+      </dependency>
+
+      <!-- HIBERNATE -->
+      <dependency>
+        <groupId>org.hibernate</groupId>
+        <artifactId>hibernate-core</artifactId>
+        <version>${hibernate.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.hibernate</groupId>
+        <artifactId>hibernate-validator</artifactId>
+        <version>${hibernate.version}</version>
+      </dependency>
+
+      <!-- apache commons -->
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-collections4</artifactId>
+        <version>${apache.commons.collections.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-lang3</artifactId>
+        <version>${apache.commons.lang.version}</version>
+      </dependency>
+
+      <!-- Swagger -->
+      <dependency>
+        <groupId>io.swagger</groupId>
+        <artifactId>swagger-jaxrs</artifactId>
+        <version>${swagger-ui.version}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>javax.ws.rs</groupId>
+            <artifactId>jsr311-api</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+
     </dependencies>
   </dependencyManagement>
+
+  <build>
+    <resources>
+      <resource>
+        <directory>src\main\resources</directory>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <configuration>
+          <webResources>
+            <resource>
+              <includes>
+                <include>**/*</include>
+              </includes>
+              <directory>${basedir}/../01-CONFIG/${dev.cdcg}</directory>
+              <targetPath>WEB-INF/classes</targetPath>
+            </resource>
+          </webResources>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 
 </project>

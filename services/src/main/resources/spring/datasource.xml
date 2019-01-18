@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+    
+
+   <bean id="datasourceInit" class="com.cbp.disponibilite.gestionnaires.database.LiquibaseUpdater" depends-on="dataSource">
+    <constructor-arg ref="dataSource"/>
+    <constructor-arg value="${updateDatabase:false}"/>
+   </bean>
+
+    <!-- Configures the database connection. -->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="org.postgresql.Driver" />
+        <property name="url" value="${JDBC_CONNECTION_STRING}" />
+        <property name="username" value="${JDBC_USER}" />
+        <property name="password" value="${JDBC_PASSWORD}" />
+    </bean>
+</beans>
+

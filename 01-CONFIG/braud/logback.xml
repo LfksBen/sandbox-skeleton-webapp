@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+      <level>DEBUG</level>
+    </filter>
+    <layout class="ch.qos.logback.classic.PatternLayout">
+      <Pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</Pattern>
+    </layout>
+  </appender>
+
+  <appender name="BACK" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+      <level>DEBUG</level>
+    </filter>
+    <file>C:/Outils/logs/disponibilite-gestionnaires-services.log.json</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <!-- daily rollover -->
+      <fileNamePattern>C:/Outils/logs/%d{yyyy-MM-dd}/disponibilite-gestionnaires-services-%d{yyyy-MM-dd}.log.json</fileNamePattern>
+      <maxHistory>60</maxHistory>
+    </rollingPolicy>
+    <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+      <includeContext>false</includeContext>
+    </encoder>
+  </appender>
+
+  <appender name="BACK_ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+      <level>ERROR</level>
+    </filter>
+    <file>C:/Outils/logs/disponibilite-gestionnaires-services-troubleshooting.log.json</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <!-- daily rollover -->
+      <fileNamePattern>C:/Outils/logs/%d{yyyy-MM-dd}/disponibilite-gestionnaires-services-troubleshooting-%d{yyyy-MM-dd}.log.json</fileNamePattern>
+      <maxHistory>60</maxHistory>
+    </rollingPolicy>
+    <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+      <includeContext>false</includeContext>
+    </encoder>
+  </appender>
+
+  <!--
+   <logger name="org.hibernate.SQL" level="ERROR" />
+
+   <logger name="org.glassfish.jersey" level="DEBUG" />
+   <logger name="org.apache.coyote" level="OFF" />
+   <logger name="org.apache.catalina" level="OFF" />
+
+   <logger name="org.hibernate.type" level="TRACE" />
+   <logger name="org.springframefork" level="DEBUG" />
+
+   <logger name="io.swagger" level="DEBUG"/>
+
+   <logger name="org.springframework" level="INFO" />
+
+   <logger name="com.cbp" level="DEBUG" />  -->
+
+  <root level="ALL">
+    <appender-ref ref="STDOUT" />
+    <appender-ref ref="BACK" />
+    <appender-ref ref="BACK_ERROR" />
+  </root>
+</configuration>
