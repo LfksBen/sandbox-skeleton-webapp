@@ -63,7 +63,6 @@
     <apache.commons.lang.version>3.8.1</apache.commons.lang.version>
     <logback.version>1.2.3</logback.version>
     <logstash.logback.version>5.2</logstash.logback.version>
-    <swagger-ui.version>1.5.17</swagger-ui.version>
   </properties>
 
   <dependencyManagement>
@@ -254,13 +253,6 @@
         <groupId>org.apache.commons</groupId>
         <artifactId>commons-lang3</artifactId>
         <version>${apache.commons.lang.version}</version>
-      </dependency>
-
-      <!-- Swagger -->
-      <dependency>
-        <groupId>io.swagger</groupId>
-        <artifactId>swagger-jaxrs</artifactId>
-        <version>${swagger-ui.version}</version>
       </dependency>
 
     </dependencies>
