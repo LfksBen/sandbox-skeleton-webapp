@@ -2,8 +2,11 @@
 <configuration>
 
 	<appender name="BACK" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>INFO</level>
+		</filter>
 	    <file>/var/log/tomcat8/disponibilite-gestionnaires-services.log.json</file>
-	    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">        
+	    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
 	        <!-- daily rollover -->
 	        <fileNamePattern>/var/log/tomcat8/disponibilite-gestionnaires-services-%d{yyyy-MM-dd}.log.json</fileNamePattern>
 	        <maxHistory>60</maxHistory>
@@ -12,8 +15,24 @@
 	          <includeContext>false</includeContext>
 	      </encoder>
 	</appender>
+
+	<appender name="BACK_ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>ERROR</level>
+		</filter>
+		<file>C:/Outils/disponibilite-gestionnaires-services-troubleshooting.log.json</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- daily rollover -->
+			<fileNamePattern>C:/Outils/disponibilite-gestionnaires-services-troubleshooting-%d{yyyy-MM-dd}.log.json</fileNamePattern>
+			<maxHistory>60</maxHistory>
+		</rollingPolicy>
+		<encoder class="net.logstash.logback.encoder.LogstashEncoder">
+			<includeContext>false</includeContext>
+		</encoder>
+	</appender>
 	
-    <root level="INFO">
+    <root>
         <appender-ref ref="BACK" />
-    </root>
+		<appender-ref ref="BACK_ERROR" />
+	</root>
 </configuration>

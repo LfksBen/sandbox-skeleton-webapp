@@ -4,6 +4,10 @@ Backend de disponibilite-gestionnaires-web
 
 # Lancement en local
 
+### Pré-requis
+
+Faire un ``mvn clean install`` afin de générer des fichiers dans le target/ dont aura besoin l'application une fois démarrée (filtering maven par exemple)
+
 ## Configuration du profil dans le fichier de "settings.xml" Maven
 
 (Ceci est en complément de la conf de base pour tout projet: nexus, github etc...)

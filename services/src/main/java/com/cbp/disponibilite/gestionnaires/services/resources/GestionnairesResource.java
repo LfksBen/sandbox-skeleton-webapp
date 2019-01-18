@@ -3,6 +3,8 @@ package com.cbp.disponibilite.gestionnaires.services.resources;
 
 import com.cbp.disponibilite.gestionnaires.manager.GestionnairesService;
 import com.cbp.disponibilite.gestionnaires.model.entities.Gestionnaire;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -18,6 +20,8 @@ import java.util.List;
 @Path("/gestionnaires")
 public class GestionnairesResource {
 
+    private final static Logger LOG = LoggerFactory.getLogger(GestionnairesResource.class);
+
     @Autowired
     GestionnairesService service;
 
@@ -30,12 +34,18 @@ public class GestionnairesResource {
     @Value("${JDBC_PASSWORD}")
     private String pass;
 
+    @Value("${app.version}")
+    private String appVersion;
+
+    @Value("${APP_HOST}")
+    private String appHost;
+
     @GET
     @Transactional
     public Response recupererGestionnaire(@QueryParam("matricule") final Long matricule) {
         List<Gestionnaire> test = service.getGestionnaireByMatricule(matricule);
 
-        return Response.status(200).entity("hello " + conn + " " + user + " " + pass).build();
+        return Response.status(200).entity("hello v" + appVersion + " sur l'host " + appHost + " " + conn + " " + user + " " + pass).build();
     }
 
 }
