@@ -261,6 +261,36 @@
         <groupId>io.swagger</groupId>
         <artifactId>swagger-jaxrs</artifactId>
         <version>${swagger-ui.version}</version>
+        <exclusions>
+          <exclusion>
+            <artifactId>jackson-dataformat-yaml</artifactId>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+          </exclusion>
+          <exclusion>
+            <artifactId>jackson-jaxrs-json-provider</artifactId>
+            <groupId>com.fasterxml.jackson.jaxrs</groupId>
+          </exclusion>
+          <exclusion>
+            <artifactId>jackson-dataformat-xml</artifactId>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+          </exclusion>
+          <exclusion>
+            <artifactId>jackson-datatype-joda</artifactId>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+          </exclusion>
+          <exclusion>
+            <artifactId>jackson-annotations</artifactId>
+            <groupId>com.fasterxml.jackson.core</groupId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.glassfish.jersey.media</groupId>
+            <artifactId>jersey-media-multipart</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.glassfish.jersey.containers</groupId>
+            <artifactId>jersey-container-servlet-core</artifactId>
+          </exclusion>
+        </exclusions>
       </dependency>
 
     </dependencies>
