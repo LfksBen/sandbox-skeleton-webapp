@@ -28,5 +28,6 @@
     <import resource="./datasource.xml"/>
     <import resource="./orm.xml"/>
     <import resource="./transaction.xml"/>
+    <import resource="./swagger.xml"/>
 
 </beans>
