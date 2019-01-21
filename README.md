@@ -9,6 +9,7 @@ Squelette d'une web app avec les technos suivantes:
 - liquibase
 - swagger
 - postgresql
+- logback
 
 Implémentant les notions suivantes:
 - conf par développeura
