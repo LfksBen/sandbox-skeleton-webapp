@@ -16,7 +16,6 @@ public class SupervisionResource {
     @GET
     @Path("/ping")
     public Response ping() {
-        LOG.error("Test acces Supervision");
         return Response.ok().build();
     }
 

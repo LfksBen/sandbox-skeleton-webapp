@@ -2,8 +2,12 @@ package com.cbp.disponibilite.gestionnaires.services.resources;
 
 
 import com.cbp.disponibilite.gestionnaires.manager.GestionnairesService;
+import com.cbp.disponibilite.gestionnaires.model.constantes.FunctionnalErrorConstantes;
 import com.cbp.disponibilite.gestionnaires.model.dto.GestionnaireDTO;
 import com.cbp.disponibilite.gestionnaires.model.entities.Gestionnaire;
+import com.cbp.disponibilite.gestionnaires.model.exceptions.TechnicalException;
+import com.cbp.disponibilite.gestionnaires.utils.ExceptionService;
+import com.cbp.disponibilite.gestionnaires.utils.ExceptionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import io.swagger.annotations.*;
@@ -14,7 +18,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
@@ -26,6 +32,9 @@ public class GestionnairesResource {
 
     @Autowired
     GestionnairesService service;
+
+    @Autowired
+    ExceptionService exceptionService;
 
     @Value("${JDBC_CONNECTION_STRING}")
     private String conn;
@@ -43,7 +52,7 @@ public class GestionnairesResource {
     private String appHost;
 
     @GET
-    @Transactional
+    @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Récupérer un gestionnaire à partir de son matricule ou TOUS les gestionnaires si aucun matricule n'est renseigné")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Renvoie le gestionnaire trouvé", response = GestionnaireDTO.class),
@@ -54,7 +63,12 @@ public class GestionnairesResource {
                             "Pas de gestionnaire trouvé pour le matricule xxx <br/>" +
                             "Plusieurs gestionnaires ont été trouvés pour le matricule xxx", response = String.class)
     })
-    public Response recupererGestionnaire(@QueryParam("matricule") final Long matricule) {
+    public Response recupererGestionnaire(@QueryParam("matricule") final Long matricule) throws Exception {
+
+        if (true) {
+            throw exceptionService.genereException(FunctionnalErrorConstantes.TELEPHONIE_ERROR_50003, "LOL");
+        }
+
         List<Gestionnaire> test = service.getGestionnaireByMatricule(matricule);
 
         return Response.status(200).entity("hello v" + appVersion + " sur l'host " + appHost + " " + conn + " " + user + " " + pass).build();

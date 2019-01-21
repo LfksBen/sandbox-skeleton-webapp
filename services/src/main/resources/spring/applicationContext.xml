@@ -25,9 +25,10 @@
 
     <aop:aspectj-autoproxy expose-proxy="true" />
 
+    <import resource="./common.xml" />
     <import resource="./datasource.xml"/>
-    <import resource="./orm.xml"/>
     <import resource="./transaction.xml"/>
+    <import resource="./orm.xml"/>
     <import resource="./swagger.xml"/>
 
 </beans>
